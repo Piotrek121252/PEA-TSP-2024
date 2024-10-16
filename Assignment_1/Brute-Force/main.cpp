@@ -80,7 +80,7 @@ int main() {
     for (const auto& instance : instances) {
 //        instance.display();
         results_file << "Instance Name,Repetitions,Optimal Cost,Optimal Path\n";
-        results_file << instance.getFilename() << " " << instance.getRepetitions() << " " << instance.getOptimalCost() << " ";
+        results_file << instance.getFilename() << "," << instance.getRepetitions() << "," << instance.getOptimalCost() << ",";
 
         for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
             results_file << instance.getOptimalPath()[i] << "-";
@@ -108,7 +108,7 @@ int main() {
             results_file << rep + 1 << ".," << measured_time << "," << absolute_error << "," << relative_error << "," << relative_error_percentage << "%\n";
 
             std::cout << "Filename: " << instance.getFilename() << " Result: " << result.first
-                << " - Repetition " << rep + 1 << " - Execution Time: " << measured_time << " microseconds\n";
+                << " - Repetition " << rep + 1 << " - Execution Time: " << measured_time << " micro-seconds\n";
 
             for (size_t j = 0; j < result.second.size() - 1; j++) {
                 std::cout << result.second[j] << "->";

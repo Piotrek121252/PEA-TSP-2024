@@ -78,7 +78,6 @@ int main() {
 
     // Dla każdej instancji wykonujemy badanie
     for (const auto& instance : instances) {
-//        instance.display();
         results_file << "Instance Name,Repetitions,Optimal Cost,Optimal Path\n";
         results_file << instance.getFilename() << " " << instance.getRepetitions() << " " << instance.getOptimalCost() << " ";
 
