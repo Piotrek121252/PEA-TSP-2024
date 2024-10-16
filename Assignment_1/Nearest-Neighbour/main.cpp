@@ -5,7 +5,7 @@
 #include <chrono>
 #include "TSPInstance.h"
 #include "GraphReader.h"
-#include "TSP_BF.h"
+#include "TSP_NN.h"
 
 
 std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string& filename) {
@@ -87,18 +87,18 @@ int main() {
         }
         results_file << instance.getOptimalPath().back() << std::endl;
 
-        results_file << "No.,Execution Times (us),Absolute error,Relative error,Relative error %\n";
+        results_file << "No.,Execution Time (ns),Absolute error,Relative error,Relative error %\n";
 
         for (int rep = 0; rep < instance.getRepetitions(); rep++) {
             std::pair<int, std::vector<int>> result;
 
             auto start_time = std::chrono::high_resolution_clock::now();
 
-            result = TSP_BF::TSP_BF_start(instance.getVertices(), instance.getAdjacencyMatrix());
+            result = TSP_NN::TSP_NN_start(instance.getVertices(), instance.getAdjacencyMatrix());
 
             auto end_time = std::chrono::high_resolution_clock::now();
 
-            long long measured_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+            long long measured_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
 
             // Obliczamy błędy aby ocenić nasze rozwiązanie
             double absolute_error = std::abs(result.first - instance.getOptimalCost());
@@ -108,7 +108,7 @@ int main() {
             results_file << rep + 1 << ".," << measured_time << "," << absolute_error << "," << relative_error << "," << relative_error_percentage << "%\n";
 
             std::cout << "Filename: " << instance.getFilename() << " Result: " << result.first
-                << " - Repetition " << rep + 1 << " - Execution Time: " << measured_time << " microseconds\n";
+                << " - Repetition " << rep + 1 << " - Execution Time: " << measured_time << " [ns]\n";
 
             for (size_t j = 0; j < result.second.size() - 1; j++) {
                 std::cout << result.second[j] << "->";
