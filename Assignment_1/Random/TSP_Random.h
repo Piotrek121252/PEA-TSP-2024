@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 class TSP_Random {
 public:

@@ -2,6 +2,10 @@
 
  std::pair<int, std::vector<int>> TSP_BF::TSP_BF_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix) {
 
+     // Sprawdzamy czas aby zatrzymać algorytm jak przekroczy 30 minut
+     auto start_time = std::chrono::steady_clock::now();
+     const auto time_limit = std::chrono::minutes(30);
+
     // Tworzymy pierwszą ścieżkę
     std::vector<int> vertices(num_of_vertices);
     for (int i = 0; i < num_of_vertices; i++) {
@@ -26,6 +30,12 @@
             optimal_cost = current_cost;
             optimal_path = vertices;
         }
+
+        // Sprawdzamy czy nie przekroczyliśmy limitu czasu
+        auto current_time = std::chrono::steady_clock::now();
+        if (current_time - start_time >= time_limit)
+            break;
+
         // Iterujemy dopóki nie przejdziemy przez wszystkie permutacje
     } while (std::next_permutation(vertices.begin(), vertices.end()));
 

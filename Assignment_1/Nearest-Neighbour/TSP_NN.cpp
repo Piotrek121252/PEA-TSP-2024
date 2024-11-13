@@ -42,8 +42,11 @@
          }
 
          // Dodajemy koszt powrotu do początkowego miasta
-         current_cost += matrix[current_city][starting_city];
-//         current_path.push_back(starting_city);
+         if (current_cost != std::numeric_limits<int>::max()) {
+             current_cost += matrix[current_city][starting_city];
+//             current_path.push_back(starting_city);
+         }
+
 
          // Jeśli droga z danego miasta jest lepsza to aktualizujemy najlepszą ścieżkę i koszt
          if (current_cost < best_cost) {

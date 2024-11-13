@@ -1,11 +1,11 @@
 #include "TSP_Random.h"
 
- std::pair<int, std::vector<int>> TSP_Random::TSP_Random_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix, int number_of_iterations) {
-    // zmienne przechowujące najlepszy koszt oraz ścieżkę
+ std::pair<int, std::vector<int>> TSP_Random::TSP_Random_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix, int time_limit_seconds) {
+    // Zmienne przechowujące najlepszy koszt oraz ścieżkę
     int best_cost = std::numeric_limits<int>::max();
-    std::vector<int> current_path(num_of_vertices);
     std::vector<int> best_path(num_of_vertices);
 
+    std::vector<int> current_path(num_of_vertices);
     // Tworzymy pierwszą ścieżkę, którą będziemy zmieniać
     for (int i = 0; i < num_of_vertices; i++) {
         current_path[i] = i;
@@ -13,8 +13,13 @@
      // Tworzymy generator liczb losowych
      std::random_device rd;
      std::mt19937 g(rd());
-    // Korzystając z shuffle zmieniamy kolejność miast w ścieżce tworząc nową ścieżkę
-    for (int i = 0; i < number_of_iterations; i++) {
+
+     // Start time tracking
+     auto start_time = std::chrono::steady_clock::now();
+     const auto time_limit = std::chrono::seconds(time_limit_seconds);
+
+    // Korzystając z std::shuffle zmieniamy kolejność miast w ścieżce tworząc nową ścieżkę
+    while (true) {
         std::shuffle(current_path.begin(), current_path.end(), g);
 
         int current_cost = 0;
@@ -31,7 +36,13 @@
             best_cost = current_cost;
             best_path = current_path;
         }
-    }
 
+        // Sprawdzamy czy przekroczyliśmy limit czasu
+        auto current_time = std::chrono::steady_clock::now();
+        if (current_time - start_time >= time_limit) {
+            break;
+        }
+
+    }
      return {best_cost, best_path};
 }

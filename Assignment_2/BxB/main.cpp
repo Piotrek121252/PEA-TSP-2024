@@ -5,7 +5,7 @@
 #include <chrono>
 #include "TSPInstance.h"
 #include "GraphReader.h"
-#include "TSP_Random.h"
+#include "TSP_BxB.h"
 
 
 std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string& filename) {
@@ -36,11 +36,10 @@ std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string
         std::istringstream iss(instanceLine);
         std::string graph_file;
         int repetitions;
-        int random_iterations;
         int optimal_cost;
         std::vector<int> optimal_path;
 
-        iss >> graph_file >> repetitions >> random_iterations >> optimal_cost;
+        iss >> graph_file >> repetitions >> optimal_cost;
 
         // Czytamy optymalna ścieżke
         int node;
@@ -59,7 +58,7 @@ std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string
 
         // Tworzymy instancję TSP do przebadania i dodajemy do listy instancji
         if (!graphModel.second.empty()) {
-            TSPInstance tsp_instance(graphModel.first, graphModel.second, graph_file, repetitions, random_iterations, optimal_cost, optimal_path);
+            TSPInstance tsp_instance(graphModel.first, graphModel.second, graph_file, repetitions, optimal_cost, optimal_path);
             instances.push_back(tsp_instance);
         }
     }
@@ -79,23 +78,23 @@ int main() {
 
     // Dla każdej instancji wykonujemy badanie
     for (const auto& instance : instances) {
-        results_file << "Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path\n";
-        results_file << instance.getFilename() << "," << instance.getRepetitions() << "," << instance.getExecutionTime() << "," << instance.getOptimalCost() << ",";
+//        instance.display();
+        results_file << "Instance Name,Repetitions,Optimal Cost,Optimal Path\n";
+        results_file << instance.getFilename() << "," << instance.getRepetitions() << "," << instance.getOptimalCost() << ",";
 
         for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
             results_file << instance.getOptimalPath()[i] << "-";
         }
         results_file << instance.getOptimalPath().back() << std::endl;
 
-        results_file << "No.,Execution Time (us),Absolute error,Relative error,Relative error %\n";
+        results_file << "No.,Execution Times (us),Absolute error,Relative error,Relative error %\n";
 
         for (int rep = 0; rep < instance.getRepetitions(); rep++) {
             std::pair<int, std::vector<int>> result;
 
             auto start_time = std::chrono::high_resolution_clock::now();
 
-            result = TSP_Random::TSP_Random_start(instance.getVertices(), instance.getAdjacencyMatrix(),
-                                                  instance.getExecutionTime());
+            result = TSP_BxB::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
 
             auto end_time = std::chrono::high_resolution_clock::now();
 
@@ -111,16 +110,13 @@ int main() {
             std::cout << "Filename: " << instance.getFilename() << " Result: " << result.first
                 << " - Repetition " << rep + 1 << " - Execution Time: " << measured_time << " micro-seconds\n";
 
-            if (result.second.size() < 16) {
-                for (size_t j = 0; j < result.second.size() - 1; j++) {
-                    std::cout << result.second[j] << "->";
-                }
-                std::cout << result.second.back() << std::endl;
+            for (size_t j = 0; j < result.second.size() - 1; j++) {
+                std::cout << result.second[j] << "->";
             }
+                std::cout << result.second.back() << std::endl;
 
-            if (instance.getOptimalCost() != 0 && result.first != instance.getOptimalCost()) {
-                std::cout << "Different cost detected for " << instance.getFilename() << " - Repetition " << rep + 1
-                << " - Expected: " << instance.getOptimalCost() << " - Got: " << result.first << std::endl;
+            if (result.first != instance.getOptimalCost()) {
+                std::cout << "Different cost detected for " << instance.getFilename() << " - Repetition " << rep + 1 << std::endl;
             }
         }
     }
