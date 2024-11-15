@@ -95,7 +95,7 @@ int main() {
             auto start_time = std::chrono::high_resolution_clock::now();
 
             result = TSP_Random::TSP_Random_start(instance.getVertices(), instance.getAdjacencyMatrix(),
-                                                  instance.getExecutionTime());
+                                                  instance.getExecutionTime(), instance.getOptimalCost());
 
             auto end_time = std::chrono::high_resolution_clock::now();
 

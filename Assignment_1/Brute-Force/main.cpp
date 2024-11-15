@@ -47,13 +47,20 @@ std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string
             optimal_path.push_back(node);
         }
 
-        // Próbujemy wczytać strukturę grafu z podanego pliku
+        // Próba wczytania pliku z dwóch ścieżek
+        std::string primary_path = "Instances/" + graph_file;
+        std::string fallback_path = "./" + graph_file;
+
         std::pair<int, std::vector<std::vector<int>>> graphModel;
         try {
-            graphModel = GraphReader::readGraph(graph_file);
+            graphModel = GraphReader::readGraph(primary_path);
         } catch (const std::runtime_error& e) {
-            std::cerr << e.what() << std::endl;
-            continue;
+            try {
+                graphModel = GraphReader::readGraph(fallback_path);
+            } catch (const std::runtime_error& e) {
+                std::cerr << e.what() << std::endl;
+                continue;
+            }
         }
 
         // Tworzymy instancję TSP do przebadania i dodajemy do listy instancji
@@ -87,7 +94,9 @@ int main() {
         }
         results_file << instance.getOptimalPath().back() << std::endl;
 
-        results_file << "No.,Execution Times (us),Absolute error,Relative error,Relative error %\n";
+        results_file << "No.,Cost,Execution Times [ms]\n";
+
+        std::cout << "Filename: " << instance.getFilename() << std::endl;
 
         for (int rep = 0; rep < instance.getRepetitions(); rep++) {
             std::pair<int, std::vector<int>> result;
@@ -105,10 +114,9 @@ int main() {
             double relative_error = (instance.getOptimalCost() != 0) ? absolute_error / std::abs(instance.getOptimalCost()) : 0.0;
             double relative_error_percentage = relative_error * 100;
 
-            results_file << rep + 1 << ".," << measured_time << "," << absolute_error << "," << relative_error << "," << relative_error_percentage << "%\n";
+            results_file << rep + 1 << ".," << result.first << "," << measured_time / 1000.0 << "\n";
 
-            std::cout << "Filename: " << instance.getFilename() << " Result: " << result.first
-                << " - Repetition " << rep + 1 << " - Execution Time: " << measured_time << " micro-seconds\n";
+            std::cout << "Repetition " << rep + 1 << " - Result: " << result.first << " - Execution Time: " << measured_time / 1000.0 << " [ms]\n";
 
             for (size_t j = 0; j < result.second.size() - 1; j++) {
                 std::cout << result.second[j] << "->";

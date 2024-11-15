@@ -1,6 +1,6 @@
 #include "TSP_Random.h"
 
- std::pair<int, std::vector<int>> TSP_Random::TSP_Random_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix, int time_limit_seconds) {
+ std::pair<int, std::vector<int>> TSP_Random::TSP_Random_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix, int time_limit_seconds, int optimal_cost) {
     // Zmienne przechowujące najlepszy koszt oraz ścieżkę
     int best_cost = std::numeric_limits<int>::max();
     std::vector<int> best_path(num_of_vertices);
@@ -35,6 +35,10 @@
         if (current_cost < best_cost) {
             best_cost = current_cost;
             best_path = current_path;
+            // Warunek stopu, jak uda nam się znaleźć wynik optymalny podany razem z instancją
+            if (best_cost == optimal_cost)
+                return {best_cost, best_path};
+
         }
 
         // Sprawdzamy czy przekroczyliśmy limit czasu

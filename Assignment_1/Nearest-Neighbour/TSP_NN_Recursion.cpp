@@ -11,7 +11,7 @@ void TSP_NN_Recursion::explore_paths(int current_city, const std::vector<std::ve
             best_cost = current_cost;
             best_path = current_path;
         }
-        return;
+
     }
     // Inicjalizujemy zmienne, które będą przechowywać najmniejszy koszt oraz wierzchołki do których prowadzi droga o takim koszcie
     int nearest_distance = std::numeric_limits<int>::max();
@@ -47,7 +47,7 @@ void TSP_NN_Recursion::explore_paths(int current_city, const std::vector<std::ve
     }
 }
 
-std::pair<int, std::vector<int>> TSP_NN_Recursion::TSP_NN_Recursion_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix) {
+std::pair<int, std::vector<int>> TSP_NN_Recursion::TSP_NN_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix) {
     // Inicjalizujemy zmienne przechowujące najlepszy koszt i ścieżke
     int best_cost = std::numeric_limits<int>::max();
     std::vector<int> best_path;
@@ -63,6 +63,7 @@ std::pair<int, std::vector<int>> TSP_NN_Recursion::TSP_NN_Recursion_start(int nu
         // Wywołujemy metodę, która wykorzystuje rekurencję aby zachłannie stworzyć ścieżke
         explore_paths(starting_city, matrix, visited, current_path, current_cost,
                       best_cost, best_path, num_of_vertices);
+
     }
 
     return {best_cost, best_path};

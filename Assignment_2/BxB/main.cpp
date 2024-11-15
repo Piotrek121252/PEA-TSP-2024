@@ -94,7 +94,9 @@ int main() {
 
             auto start_time = std::chrono::high_resolution_clock::now();
 
-            result = TSP_BxB::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+//            result = TSP_BxB::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+//            result = TSP_BxB::TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+            result = TSP_BxB::TSP_LOWCOST_start(instance.getVertices(), instance.getAdjacencyMatrix());
 
             auto end_time = std::chrono::high_resolution_clock::now();
 

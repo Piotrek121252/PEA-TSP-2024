@@ -22,7 +22,7 @@
              int nearest_city = -1;
 
              // Szukamy najbliższego miasta wychodzącego z tego miasta, którego jeszcze nie odwiedziliśmy
-             for (int j = 0; j < num_of_vertices; ++j) {
+             for (int j = 0; j < num_of_vertices; j++) {
                  if (!visited[j] && matrix[current_city][j] < nearest_distance) {
                      nearest_distance = matrix[current_city][j];
                      nearest_city = j;

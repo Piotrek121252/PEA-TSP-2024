@@ -6,6 +6,7 @@
 #include "TSPInstance.h"
 #include "GraphReader.h"
 #include "TSP_NN.h"
+#include "TSP_NN_Recursion.h"
 
 
 std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string& filename) {
@@ -93,7 +94,8 @@ int main() {
 
             auto start_time = std::chrono::high_resolution_clock::now();
 
-            result = TSP_NN::TSP_NN_start(instance.getVertices(), instance.getAdjacencyMatrix());
+//            result = TSP_NN::TSP_NN_start(instance.getVertices(), instance.getAdjacencyMatrix());
+            result = TSP_NN_Recursion::TSP_NN_start(instance.getVertices(), instance.getAdjacencyMatrix());
 
             auto end_time = std::chrono::high_resolution_clock::now();
 
