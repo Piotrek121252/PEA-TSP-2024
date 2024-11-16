@@ -89,10 +89,14 @@ int main() {
         results_file << "Instance Name,Repetitions,Optimal Cost,Optimal Path\n";
         results_file << instance.getFilename() << "," << instance.getRepetitions() << "," << instance.getOptimalCost() << ",";
 
-        for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
-            results_file << instance.getOptimalPath()[i] << "-";
-        }
-        results_file << instance.getOptimalPath().back() << std::endl;
+        if (!instance.getOptimalPath().empty()){
+            for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
+                results_file << instance.getOptimalPath()[i] << "-";
+            }
+            results_file << instance.getOptimalPath().back() << std::endl;
+        } else
+            results_file << "None" << std::endl;
+
 
         results_file << "No.,Cost,Execution Times [ms]\n";
 
@@ -123,7 +127,8 @@ int main() {
             }
                 std::cout << result.second.back() << std::endl;
 
-            if (result.first != instance.getOptimalCost()) {
+            // Sprawdzamy czy znaleziono błędne optimum o ile było podane (-1 oznacza brak)
+            if (instance.getOptimalCost() != -1 && result.first != instance.getOptimalCost()) {
                 std::cout << "Different cost detected for " << instance.getFilename() << " - Repetition " << rep + 1 << std::endl;
             }
         }

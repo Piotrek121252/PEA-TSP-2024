@@ -11,11 +11,12 @@ private:
     std::vector<std::vector<int>> adjacency_matrix;
     std::string filename;
     int repetitions;
+    std::string method;
     int optimal_cost;
     std::vector<int> optimal_path;
 
 public:
-    TSPInstance(int vertices, const std::vector<std::vector<int>>& adjacency_matrix, std::string filename, int repetitions, int optimal_cost, const std::vector<int>& optimal_path);
+    TSPInstance(int vertices, const std::vector<std::vector<int>>& adjacency_matrix, std::string filename, int repetitions, std::string method, int optimal_cost, const std::vector<int>& optimal_path);
 
     void display() const;
 
@@ -24,6 +25,8 @@ public:
     const std::vector<std::vector<int>> &getAdjacencyMatrix() const;
 
     const std::string &getFilename() const;
+
+    const std::string &getMethod() const;
 
     int getRepetitions() const;
 

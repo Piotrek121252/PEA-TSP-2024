@@ -1,8 +1,8 @@
 #include "TSPInstance.h"
 
 // Constructor to initialize the TSP instance with adjacency matrix
-TSPInstance::TSPInstance(int vertices, const std::vector<std::vector<int>>& adjacency_matrix, std::string filename, int repetitions, int optimal_cost, const std::vector<int>& optimal_path)
-        : vertices(vertices), adjacency_matrix(adjacency_matrix), filename(filename), repetitions(repetitions), optimal_cost(optimal_cost), optimal_path(optimal_path) {}
+TSPInstance::TSPInstance(int vertices, const std::vector<std::vector<int>>& adjacency_matrix, std::string filename, int repetitions, std::string method, int optimal_cost, const std::vector<int>& optimal_path)
+        : vertices(vertices), adjacency_matrix(adjacency_matrix), filename(filename), repetitions(repetitions), method(method), optimal_cost(optimal_cost), optimal_path(optimal_path) {}
 
 // Function to display the instance details (for testing)
 void TSPInstance::display() const {
@@ -17,6 +17,7 @@ void TSPInstance::display() const {
 
     std::cout << "Filename: " << filename << std::endl;
     std::cout << "Repetitions: " << repetitions << "\n";
+    std::cout << "Method: " << method << "\n";
     std::cout << "Optimal Cost: " << optimal_cost << "\n";
     std::cout << "Optimal Path: ";
     for (const auto& node : optimal_path) {
@@ -35,6 +36,10 @@ const std::vector<std::vector<int>> &TSPInstance::getAdjacencyMatrix() const {
 
 const std::string &TSPInstance::getFilename() const {
     return filename;
+}
+
+const std::string &TSPInstance::getMethod() const {
+    return method;
 }
 
 int TSPInstance::getRepetitions() const {

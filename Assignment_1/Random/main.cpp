@@ -48,13 +48,20 @@ std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string
             optimal_path.push_back(node);
         }
 
-        // Próbujemy wczytać strukturę grafu z podanego pliku
+        // Próba wczytania pliku z dwóch ścieżek
+        std::string primary_path = "Instances/" + graph_file;
+        std::string fallback_path = "./" + graph_file;
+
         std::pair<int, std::vector<std::vector<int>>> graphModel;
         try {
-            graphModel = GraphReader::readGraph(graph_file);
+            graphModel = GraphReader::readGraph(primary_path);
         } catch (const std::runtime_error& e) {
-            std::cerr << e.what() << std::endl;
-            continue;
+            try {
+                graphModel = GraphReader::readGraph(fallback_path);
+            } catch (const std::runtime_error& e) {
+                std::cerr << e.what() << std::endl;
+                continue;
+            }
         }
 
         // Tworzymy instancję TSP do przebadania i dodajemy do listy instancji
@@ -82,12 +89,17 @@ int main() {
         results_file << "Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path\n";
         results_file << instance.getFilename() << "," << instance.getRepetitions() << "," << instance.getExecutionTime() << "," << instance.getOptimalCost() << ",";
 
-        for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
-            results_file << instance.getOptimalPath()[i] << "-";
-        }
-        results_file << instance.getOptimalPath().back() << std::endl;
+        if (!instance.getOptimalPath().empty()){
+            for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
+                results_file << instance.getOptimalPath()[i] << "-";
+            }
+            results_file << instance.getOptimalPath().back() << std::endl;
+        } else
+            results_file << "None" << std::endl;
 
-        results_file << "No.,Execution Time (us),Absolute error,Relative error,Relative error %\n";
+        results_file << "No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %\n";
+
+        std::cout << "Filename: " << instance.getFilename() << std::endl;
 
         for (int rep = 0; rep < instance.getRepetitions(); rep++) {
             std::pair<int, std::vector<int>> result;
@@ -103,13 +115,13 @@ int main() {
 
             // Obliczamy błędy aby ocenić nasze rozwiązanie
             double absolute_error = std::abs(result.first - instance.getOptimalCost());
-            double relative_error = (instance.getOptimalCost() != 0) ? absolute_error / std::abs(instance.getOptimalCost()) : 0.0;
+            double relative_error = (instance.getOptimalCost() != -1) ? absolute_error / std::abs(instance.getOptimalCost()) : 0.0;
             double relative_error_percentage = relative_error * 100;
 
-            results_file << rep + 1 << ".," << measured_time << "," << absolute_error << "," << relative_error << "," << relative_error_percentage << "%\n";
+            results_file << rep + 1 << ".," << measured_time << "," << result.first << "," << absolute_error << "," << relative_error << "," << relative_error_percentage << "%\n";
 
-            std::cout << "Filename: " << instance.getFilename() << " Result: " << result.first
-                << " - Repetition " << rep + 1 << " - Execution Time: " << measured_time << " micro-seconds\n";
+            std::cout << "Repetition " << rep + 1 << " - Result: " << result.first << " - Execution Time: " << measured_time / 1000.0 << " [ms]"
+                        << " - Absolute Error: " << absolute_error << " - Relative Error: " << relative_error << " - " << relative_error_percentage << "% \n";
 
             if (result.second.size() < 16) {
                 for (size_t j = 0; j < result.second.size() - 1; j++) {
@@ -118,7 +130,7 @@ int main() {
                 std::cout << result.second.back() << std::endl;
             }
 
-            if (instance.getOptimalCost() != 0 && result.first != instance.getOptimalCost()) {
+            if (instance.getOptimalCost() != -1 && result.first != instance.getOptimalCost()) {
                 std::cout << "Different cost detected for " << instance.getFilename() << " - Repetition " << rep + 1
                 << " - Expected: " << instance.getOptimalCost() << " - Got: " << result.first << std::endl;
             }

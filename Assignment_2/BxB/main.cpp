@@ -36,10 +36,11 @@ std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string
         std::istringstream iss(instanceLine);
         std::string graph_file;
         int repetitions;
+        std::string method;
         int optimal_cost;
         std::vector<int> optimal_path;
 
-        iss >> graph_file >> repetitions >> optimal_cost;
+        iss >> graph_file >> repetitions >> method >> optimal_cost;
 
         // Czytamy optymalna ścieżke
         int node;
@@ -47,18 +48,24 @@ std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string
             optimal_path.push_back(node);
         }
 
-        // Próbujemy wczytać strukturę grafu z podanego pliku
+        // Próba wczytania pliku z dwóch ścieżek
+        std::string primary_path = "Instances/" + graph_file;
+        std::string fallback_path = "./" + graph_file;
+
         std::pair<int, std::vector<std::vector<int>>> graphModel;
         try {
-            graphModel = GraphReader::readGraph(graph_file);
+            graphModel = GraphReader::readGraph(primary_path);
         } catch (const std::runtime_error& e) {
-            std::cerr << e.what() << std::endl;
-            continue;
+            try {
+                graphModel = GraphReader::readGraph(fallback_path);
+            } catch (const std::runtime_error& e) {
+                std::cerr << e.what() << std::endl;
+                continue;
+            }
         }
-
         // Tworzymy instancję TSP do przebadania i dodajemy do listy instancji
         if (!graphModel.second.empty()) {
-            TSPInstance tsp_instance(graphModel.first, graphModel.second, graph_file, repetitions, optimal_cost, optimal_path);
+            TSPInstance tsp_instance(graphModel.first, graphModel.second, graph_file, repetitions, method, optimal_cost, optimal_path);
             instances.push_back(tsp_instance);
         }
     }
@@ -87,37 +94,45 @@ int main() {
         }
         results_file << instance.getOptimalPath().back() << std::endl;
 
-        results_file << "No.,Execution Times (us),Absolute error,Relative error,Relative error %\n";
+        results_file << "No.,Result,Execution Times [ms],\n";
+
+        std::cout << "Filename: " << instance.getFilename() << std::endl;
 
         for (int rep = 0; rep < instance.getRepetitions(); rep++) {
             std::pair<int, std::vector<int>> result;
 
             auto start_time = std::chrono::high_resolution_clock::now();
 
-//            result = TSP_BxB::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
-//            result = TSP_BxB::TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
-            result = TSP_BxB::TSP_LOWCOST_start(instance.getVertices(), instance.getAdjacencyMatrix());
+            if (instance.getMethod() == "dfs") {
+
+                std::cout << "Starting method: DFS" << std::endl;
+                result = TSP_BxB::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+            } else if (instance.getMethod() == "bfs") {
+
+                std::cout << "Starting method: BFS" << std::endl;
+                result = TSP_BxB::TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+            } else if (instance.getMethod() == "best-first") {
+
+                std::cout << "Starting method: Best-first" << std::endl;
+                result = TSP_BxB::TSP_LOWCOST_start(instance.getVertices(), instance.getAdjacencyMatrix());
+            } else {
+                continue;
+            }
 
             auto end_time = std::chrono::high_resolution_clock::now();
 
             long long measured_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
 
-            // Obliczamy błędy aby ocenić nasze rozwiązanie
-            double absolute_error = std::abs(result.first - instance.getOptimalCost());
-            double relative_error = (instance.getOptimalCost() != 0) ? absolute_error / std::abs(instance.getOptimalCost()) : 0.0;
-            double relative_error_percentage = relative_error * 100;
+            results_file << rep + 1 << ".," << result.first << "," << measured_time / 1000.0 << "\n";
 
-            results_file << rep + 1 << ".," << measured_time << "," << absolute_error << "," << relative_error << "," << relative_error_percentage << "%\n";
-
-            std::cout << "Filename: " << instance.getFilename() << " Result: " << result.first
-                << " - Repetition " << rep + 1 << " - Execution Time: " << measured_time << " micro-seconds\n";
+            std::cout << "Repetition " << rep + 1 << " - Result: " << result.first << " - Execution Time: " << measured_time / 1000.0 << " [ms]\n";
 
             for (size_t j = 0; j < result.second.size() - 1; j++) {
                 std::cout << result.second[j] << "->";
             }
                 std::cout << result.second.back() << std::endl;
 
-            if (result.first != instance.getOptimalCost()) {
+            if (instance.getOptimalCost() != -1 && result.first != instance.getOptimalCost()) {
                 std::cout << "Different cost detected for " << instance.getFilename() << " - Repetition " << rep + 1 << std::endl;
             }
         }

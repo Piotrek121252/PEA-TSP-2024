@@ -1,0 +1,64 @@
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_1.txt 1 132 0-1-2-3-4-5-0
+No.,Execution Time (ns),Absolute error,Relative error,Relative error %
+1.,14700,132,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_2.txt 1 80 0-5-1-2-3-4-0
+No.,Execution Time (ns),Absolute error,Relative error,Relative error %
+1.,7200,98,18,0.225,22.5%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_10.txt 1 212 0-3-4-2-8-7-6-9-1-5-0
+No.,Execution Time (ns),Absolute error,Relative error,Relative error %
+1.,20200,213,1,0.00471698,0.471698%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_12.txt 1 264 0-1-8-4-6-2-11-9-7-5-3-10-0
+No.,Execution Time (ns),Absolute error,Relative error,Relative error %
+1.,48000,264,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_13.txt 1 269 0-10-3-5-7-9-11-2-6-4-8-1-12-0
+No.,Execution Time (ns),Absolute error,Relative error,Relative error %
+1.,52700,269,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_14.txt 1 282 0-10-3-5-7-9-13-11-2-6-4-8-1-12-0
+No.,Execution Time (ns),Absolute error,Relative error,Relative error %
+1.,77900,282,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_15.txt 1 291 0-12-1-14-8-4-6-2-11-13-9-7-5-3-10-0
+No.,Execution Time (ns),Absolute error,Relative error,Relative error %
+1.,64400,291,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_17.txt 1 39 0-11-13-2-9-10-1-12-15-14-5-6-3-4-7-8-16-0
+No.,Execution Time (ns),Absolute error,Relative error,Relative error %
+1.,87199900,39,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_1.txt 1 132 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,17200,132,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_2.txt 1 80 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,8000,98,18,0.225,22.5%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_10.txt 1 212 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,19400,213,1,0.00471698,0.471698%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_12.txt 1 264 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,49600,264,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_13.txt 1 269 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,53200,269,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_14.txt 1 282 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,41700,282,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_15.txt 1 291 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,44500,291,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_17.txt 1 39 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,94909000,39,0,0,0%

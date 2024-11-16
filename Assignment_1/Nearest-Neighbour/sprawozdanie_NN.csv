@@ -1,0 +1,78 @@
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+gr17.tsp 5 2085 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,71500,2178,93,0.0446043,4.46043%
+2.,62100,2178,93,0.0446043,4.46043%
+3.,57800,2178,93,0.0446043,4.46043%
+4.,37600,2178,93,0.0446043,4.46043%
+5.,65900,2178,93,0.0446043,4.46043%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+bays29.tsp 5 2020 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,394000,2134,114,0.0564356,5.64356%
+2.,398300,2134,114,0.0564356,5.64356%
+3.,269900,2134,114,0.0564356,5.64356%
+4.,380900,2134,114,0.0564356,5.64356%
+5.,295400,2134,114,0.0564356,5.64356%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+swiss42.tsp 5 1273 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,2324900,1437,164,0.12883,12.883%
+2.,1533800,1437,164,0.12883,12.883%
+3.,1589500,1437,164,0.12883,12.883%
+4.,1498300,1437,164,0.12883,12.883%
+5.,1489700,1437,164,0.12883,12.883%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+berlin52.tsp 2 7542 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,442500,8181,639,0.0847255,8.47255%
+2.,430400,8181,639,0.0847255,8.47255%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+st70.tsp 2 675 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,104594800,735,60,0.0888889,8.88889%
+2.,109493000,735,60,0.0888889,8.88889%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+pr124.tsp 2 59030 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,12753500,66805,7775,0.131713,13.1713%
+2.,11939900,66805,7775,0.131713,13.1713%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+br17.atsp 5 39 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,334770800,87,48,1.23077,123.077%
+2.,336886000,87,48,1.23077,123.077%
+3.,335389500,87,48,1.23077,123.077%
+4.,337469600,87,48,1.23077,123.077%
+5.,337534200,87,48,1.23077,123.077%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv35.atsp 5 1473 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,224400,1667,194,0.131704,13.1704%
+2.,209800,1667,194,0.131704,13.1704%
+3.,215100,1667,194,0.131704,13.1704%
+4.,471700,1667,194,0.131704,13.1704%
+5.,227500,1667,194,0.131704,13.1704%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ry48p.atsp 5 14422 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,402900,15575,1153,0.0799473,7.99473%
+2.,430500,15575,1153,0.0799473,7.99473%
+3.,411400,15575,1153,0.0799473,7.99473%
+4.,410700,15575,1153,0.0799473,7.99473%
+5.,400400,15575,1153,0.0799473,7.99473%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv55.atsp 2 1608 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,833900,1948,340,0.211443,21.1443%
+2.,835400,1948,340,0.211443,21.1443%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ft70.atsp 2 38673 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,1024900,41815,3142,0.0812453,8.12453%
+2.,1022800,41815,3142,0.0812453,8.12453%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+kro124.atsp 2 36230 None
+No.,Execution Time (ns),Result,Absolute error,Relative error,Relative error %
+1.,2632300,43316,7086,0.195584,19.5584%
+2.,2906500,43316,7086,0.195584,19.5584%

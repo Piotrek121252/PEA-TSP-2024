@@ -1,6 +1,5 @@
 #include "TSP_NN_Recursion.h"
 
-// Recursive function to explore paths
 void TSP_NN_Recursion::explore_paths(int current_city, const std::vector<std::vector<int>>& matrix, std::vector<bool>& visited, std::vector<int>& current_path,
                    int current_cost, int& best_cost, std::vector<int>& best_path, int num_of_vertices) {
     // Jeśli udało nam się odwiedzić wszystkie miasta to sprawdzamy czy ścieżka jest najlepsza do tej pory

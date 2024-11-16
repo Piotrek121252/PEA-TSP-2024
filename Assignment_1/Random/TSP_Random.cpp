@@ -14,9 +14,10 @@
      std::random_device rd;
      std::mt19937 g(rd());
 
-     // Start time tracking
+     // Zaczynamy mierzyć czas
      auto start_time = std::chrono::steady_clock::now();
      const auto time_limit = std::chrono::seconds(time_limit_seconds);
+     int iteration_count = 0;
 
     // Korzystając z std::shuffle zmieniamy kolejność miast w ścieżce tworząc nową ścieżkę
     while (true) {
@@ -42,11 +43,15 @@
         }
 
         // Sprawdzamy czy przekroczyliśmy limit czasu
-        auto current_time = std::chrono::steady_clock::now();
-        if (current_time - start_time >= time_limit) {
-            break;
+        if (++iteration_count > 10000000) {
+            iteration_count = 0;
+            auto current_time = std::chrono::steady_clock::now();
+            if (current_time - start_time >= time_limit) {
+                break;
+            }
         }
 
     }
+
      return {best_cost, best_path};
 }

@@ -1,6 +1,7 @@
-tsp_6_1.txt 10 360 132 0 1 2 3 4 5 0
-tsp_6_2.txt 10 360 80 0 5 1 2 3 4 0
-tsp_10.txt 10 360 212 0 3 4 2 8 7 6 9 1 5 0
-tsp_12.txt 10 360 264 0 1 8 4 6 2 11 9 7 5 3 10 0
-tsp_13.txt 10 360 269 0 10 3 5 7 9 11 2 6 4 8 1 12 0
-random_results.csv
+gr17.tsp 2 300 2085
+bays29.tsp 2 300 2020
+swiss42.tsp 2 300 1273
+berlin52.tsp 2 300 7542
+st70.tsp 2 300 675
+pr124.tsp 2 300 59030
+sprawozdanie_random.csv

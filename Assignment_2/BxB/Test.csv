@@ -1,0 +1,62 @@
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_1.txt,1,132,0-1-2-3-4-5-0
+No.,Execution Times [ms],
+1.,132,0.075
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_2.txt,1,80,0-5-1-2-3-4-0
+No.,Execution Times [ms],
+1.,80,0.331
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_10.txt,1,212,0-3-4-2-8-7-6-9-1-5-0
+No.,Execution Times [ms],
+1.,212,1.153
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_12.txt,1,264,0-1-8-4-6-2-11-9-7-5-3-10-0
+No.,Execution Times [ms],
+1.,264,3.807
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_13.txt,1,269,0-10-3-5-7-9-11-2-6-4-8-1-12-0
+No.,Execution Times [ms],
+1.,269,2323.78
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_1.txt,1,132,0-1-2-3-4-5-0
+No.,Result,Execution Times [ms],
+1.,132,0.126
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_2.txt,1,80,0-5-1-2-3-4-0
+No.,Result,Execution Times [ms],
+1.,80,0.308
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_10.txt,1,212,0-3-4-2-8-7-6-9-1-5-0
+No.,Result,Execution Times [ms],
+1.,212,1.095
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_12.txt,1,264,0-1-8-4-6-2-11-9-7-5-3-10-0
+No.,Result,Execution Times [ms],
+1.,264,3.901
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_13.txt,1,269,0-10-3-5-7-9-11-2-6-4-8-1-12-0
+No.,Result,Execution Times [ms],
+1.,269,2369.35
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_1.txt,1,132,0-1-2-3-4-5-0
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_1.txt,1,132,0-1-2-3-4-5-0
+No.,Result,Execution Times [ms],
+1.,132,1.247
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_6_2.txt,1,80,0-5-1-2-3-4-0
+No.,Result,Execution Times [ms],
+1.,80,0.379
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_10.txt,1,212,0-3-4-2-8-7-6-9-1-5-0
+No.,Result,Execution Times [ms],
+1.,212,2.782
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_12.txt,1,264,0-1-8-4-6-2-11-9-7-5-3-10-0
+No.,Result,Execution Times [ms],
+1.,264,3.941
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp_13.txt,1,269,0-10-3-5-7-9-11-2-6-4-8-1-12-0
+No.,Result,Execution Times [ms],
+1.,269,2398.41

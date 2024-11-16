@@ -342,3 +342,176 @@ No.,Execution Time (us),Absolute error,Relative error,Relative error %
 8.,21192849,0,0,0%
 9.,19274918,0,0,0%
 10.,17077816,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_6_1.txt,10,360,132,0-1-2-3-4-5-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,399,132,0,0,0%
+2.,8,132,0,0,0%
+3.,7,132,0,0,0%
+4.,7,132,0,0,0%
+5.,15,132,0,0,0%
+6.,5,132,0,0,0%
+7.,6,132,0,0,0%
+8.,6,132,0,0,0%
+9.,3,132,0,0,0%
+10.,12,132,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_6_2.txt,10,360,80,0-5-1-2-3-4-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,5,80,0,0,0%
+2.,3,80,0,0,0%
+3.,4,80,0,0,0%
+4.,7,80,0,0,0%
+5.,14,80,0,0,0%
+6.,18,80,0,0,0%
+7.,10,80,0,0,0%
+8.,3,80,0,0,0%
+9.,5,80,0,0,0%
+10.,4,80,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_10.txt,10,360,212,0-3-4-2-8-7-6-9-1-5-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,4463,212,0,0,0%
+2.,3856,212,0,0,0%
+3.,7798,212,0,0,0%
+4.,2347,212,0,0,0%
+5.,2722,212,0,0,0%
+6.,13410,212,0,0,0%
+7.,20334,212,0,0,0%
+8.,3640,212,0,0,0%
+9.,1150,212,0,0,0%
+10.,23578,212,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_12.txt,10,360,264,0-1-8-4-6-2-11-9-7-5-3-10-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,2939384,264,0,0,0%
+2.,166926,264,0,0,0%
+3.,775920,264,0,0,0%
+4.,2282657,264,0,0,0%
+5.,3388514,264,0,0,0%
+6.,824959,264,0,0,0%
+7.,629658,264,0,0,0%
+8.,948632,264,0,0,0%
+9.,1001630,264,0,0,0%
+10.,5226333,264,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_13.txt,10,360,269,0-10-3-5-7-9-11-2-6-4-8-1-12-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,73938,269,0,0,0%
+2.,23878932,269,0,0,0%
+3.,13756797,269,0,0,0%
+4.,3263816,269,0,0,0%
+5.,1007461,269,0,0,0%
+6.,10388296,269,0,0,0%
+7.,18705223,269,0,0,0%
+8.,19613205,269,0,0,0%
+9.,15620732,269,0,0,0%
+10.,46963132,269,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_6_1.txt,10,360,132,0-1-2-3-4-5-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,460,132,0,0,0%
+2.,22,132,0,0,0%
+3.,13,132,0,0,0%
+4.,13,132,0,0,0%
+5.,16,132,0,0,0%
+6.,7,132,0,0,0%
+7.,5,132,0,0,0%
+8.,8,132,0,0,0%
+9.,8,132,0,0,0%
+10.,25,132,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_6_2.txt,10,360,80,0-5-1-2-3-4-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,8,80,0,0,0%
+2.,17,80,0,0,0%
+3.,8,80,0,0,0%
+4.,7,80,0,0,0%
+5.,5,80,0,0,0%
+6.,5,80,0,0,0%
+7.,9,80,0,0,0%
+8.,9,80,0,0,0%
+9.,84,80,0,0,0%
+10.,7,80,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_10.txt,10,360,212,0-3-4-2-8-7-6-9-1-5-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,6180,212,0,0,0%
+2.,27595,212,0,0,0%
+3.,4612,212,0,0,0%
+4.,7095,212,0,0,0%
+5.,922,212,0,0,0%
+6.,4425,212,0,0,0%
+7.,23270,212,0,0,0%
+8.,6350,212,0,0,0%
+9.,2069,212,0,0,0%
+10.,5195,212,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_12.txt,10,360,264,0-1-8-4-6-2-11-9-7-5-3-10-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,2590532,264,0,0,0%
+2.,382700,264,0,0,0%
+3.,262624,264,0,0,0%
+4.,198909,264,0,0,0%
+5.,915254,264,0,0,0%
+6.,705785,264,0,0,0%
+7.,137547,264,0,0,0%
+8.,1586421,264,0,0,0%
+9.,810346,264,0,0,0%
+10.,1154373,264,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_13.txt,10,360,269,0-10-3-5-7-9-11-2-6-4-8-1-12-0
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_6_1.txt,10,360,132,0-1-2-3-4-5-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,591,132,0,0,0%
+2.,12,132,0,0,0%
+3.,6,132,0,0,0%
+4.,21,132,0,0,0%
+5.,9,132,0,0,0%
+6.,7,132,0,0,0%
+7.,5,132,0,0,0%
+8.,13,132,0,0,0%
+9.,23,132,0,0,0%
+10.,5,132,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_6_2.txt,10,360,80,0-5-1-2-3-4-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,7,80,0,0,0%
+2.,14,80,0,0,0%
+3.,6,80,0,0,0%
+4.,11,80,0,0,0%
+5.,47,80,0,0,0%
+6.,8,80,0,0,0%
+7.,5,80,0,0,0%
+8.,10,80,0,0,0%
+9.,5,80,0,0,0%
+10.,6,80,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_10.txt,10,360,212,0-3-4-2-8-7-6-9-1-5-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,5873,212,0,0,0%
+2.,8699,212,0,0,0%
+3.,11664,212,0,0,0%
+4.,110,212,0,0,0%
+5.,1795,212,0,0,0%
+6.,12353,212,0,0,0%
+7.,661,212,0,0,0%
+8.,3426,212,0,0,0%
+9.,1098,212,0,0,0%
+10.,6352,212,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_12.txt,10,360,264,0-1-8-4-6-2-11-9-7-5-3-10-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,923143,264,0,0,0%
+2.,2639920,264,0,0,0%
+3.,450413,264,0,0,0%
+4.,486964,264,0,0,0%
+5.,31630,264,0,0,0%
+6.,516829,264,0,0,0%
+7.,2577882,264,0,0,0%
+8.,3167840,264,0,0,0%
+9.,716008,264,0,0,0%
+10.,508355,264,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_13.txt,10,360,269,0-10-3-5-7-9-11-2-6-4-8-1-12-0
