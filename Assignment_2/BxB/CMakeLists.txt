@@ -12,4 +12,6 @@ add_executable(PEA_zadanie2 main.cpp
         GraphReader.cpp
         GraphReader.h
         TSP_BxB.cpp
-        TSP_BxB.h)
+        TSP_BxB.h
+        TSP_BxB_new.cpp
+        TSP_BxB_new.h)

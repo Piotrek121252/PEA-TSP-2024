@@ -6,6 +6,7 @@
 #include "TSPInstance.h"
 #include "GraphReader.h"
 #include "TSP_BxB.h"
+#include "TSP_BxB_new.h"
 
 
 std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string& filename) {
@@ -89,10 +90,13 @@ int main() {
         results_file << "Instance Name,Method,Repetitions,Optimal Cost,Optimal Path\n";
         results_file << instance.getFilename() << "," << instance.getMethod() << "," << instance.getRepetitions() << "," << instance.getOptimalCost() << ",";
 
-        for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
-            results_file << instance.getOptimalPath()[i] << "-";
-        }
-        results_file << instance.getOptimalPath().back() << std::endl;
+        if (!instance.getOptimalPath().empty()){
+            for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
+                results_file << instance.getOptimalPath()[i] << "-";
+            }
+            results_file << instance.getOptimalPath().back() << std::endl;
+        } else
+            results_file << "None" << std::endl;
 
         results_file << "No.,Result,Execution Times [ms],\n";
 
@@ -104,11 +108,11 @@ int main() {
             auto start_time = std::chrono::high_resolution_clock::now();
 
             if (instance.getMethod() == "dfs") {
-                result = TSP_BxB::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+                result = TSP_BxB_new::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
             } else if (instance.getMethod() == "bfs") {
-                result = TSP_BxB::TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+                result = TSP_BxB_new::TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
             } else if (instance.getMethod() == "best-first") {
-                result = TSP_BxB::TSP_LOWCOST_start(instance.getVertices(), instance.getAdjacencyMatrix());
+                result = TSP_BxB_new::TSP_BESTFIRST_start(instance.getVertices(), instance.getAdjacencyMatrix());
             } else {
                 continue;
             }
@@ -121,10 +125,12 @@ int main() {
 
             std::cout << "Repetition " << rep + 1 << " - Result: " << result.first << " - Execution Time: " << measured_time / 1000.0 << " [ms]\n";
 
-            for (size_t j = 0; j < result.second.size() - 1; j++) {
-                std::cout << result.second[j] << "->";
-            }
+            if (result.second.size() < 16) {
+                for (size_t j = 0; j < result.second.size() - 1; j++) {
+                    std::cout << result.second[j] << "->";
+                }
                 std::cout << result.second.back() << std::endl;
+            }
 
             if (instance.getOptimalCost() != -1 && result.first != instance.getOptimalCost()) {
                 std::cout << "Different cost detected for " << instance.getFilename() << " - Repetition " << rep + 1 << std::endl;
