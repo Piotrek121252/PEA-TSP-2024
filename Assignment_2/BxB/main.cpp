@@ -86,8 +86,8 @@ int main() {
     // Dla każdej instancji wykonujemy badanie
     for (const auto& instance : instances) {
 //        instance.display();
-        results_file << "Instance Name,Repetitions,Optimal Cost,Optimal Path\n";
-        results_file << instance.getFilename() << "," << instance.getRepetitions() << "," << instance.getOptimalCost() << ",";
+        results_file << "Instance Name,Method,Repetitions,Optimal Cost,Optimal Path\n";
+        results_file << instance.getFilename() << "," << instance.getMethod() << "," << instance.getRepetitions() << "," << instance.getOptimalCost() << ",";
 
         for (size_t i = 0; i < instance.getOptimalPath().size() - 1; i++) {
             results_file << instance.getOptimalPath()[i] << "-";
@@ -96,7 +96,7 @@ int main() {
 
         results_file << "No.,Result,Execution Times [ms],\n";
 
-        std::cout << "Filename: " << instance.getFilename() << std::endl;
+        std::cout << "Filename: " << instance.getFilename() << " Method: " << instance.getMethod() << std::endl;
 
         for (int rep = 0; rep < instance.getRepetitions(); rep++) {
             std::pair<int, std::vector<int>> result;
@@ -104,16 +104,10 @@ int main() {
             auto start_time = std::chrono::high_resolution_clock::now();
 
             if (instance.getMethod() == "dfs") {
-
-                std::cout << "Starting method: DFS" << std::endl;
                 result = TSP_BxB::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
             } else if (instance.getMethod() == "bfs") {
-
-                std::cout << "Starting method: BFS" << std::endl;
                 result = TSP_BxB::TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
             } else if (instance.getMethod() == "best-first") {
-
-                std::cout << "Starting method: Best-first" << std::endl;
                 result = TSP_BxB::TSP_LOWCOST_start(instance.getVertices(), instance.getAdjacencyMatrix());
             } else {
                 continue;

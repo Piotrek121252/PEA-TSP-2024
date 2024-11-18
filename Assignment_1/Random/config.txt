@@ -1,7 +1,7 @@
-gr17.tsp 2 300 2085
-bays29.tsp 2 300 2020
-swiss42.tsp 2 300 1273
-berlin52.tsp 2 300 7542
-st70.tsp 2 300 675
-pr124.tsp 2 300 59030
-sprawozdanie_random.csv
+br17.atsp 4 300 39
+ftv35.atsp 4 300 1473
+ry48p.atsp 4 300 14422
+ftv55.atsp 4 300 1608
+ft70.atsp 4 300 38673
+kro124.atsp 4 300 36230
+sprawozdanie_random_atsp.csv

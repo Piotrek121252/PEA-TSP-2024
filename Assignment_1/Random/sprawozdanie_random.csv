@@ -1,0 +1,30 @@
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+gr17.tsp,2,300,2085,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,300184301,2218,133,0.063789,6.3789%
+2.,300204388,2181,96,0.0460432,4.60432%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+bays29.tsp,2,300,2020,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,300099388,3329,1309,0.64802,64.802%
+2.,300734100,3371,1351,0.668812,66.8812%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+swiss42.tsp,2,300,1273,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,300191238,2969,1696,1.33229,133.229%
+2.,301159796,2862,1589,1.24823,124.823%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+berlin52.tsp,2,300,7542,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,301338641,18993,11451,1.5183,151.83%
+2.,301260891,19181,11639,1.54322,154.322%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+st70.tsp,2,300,675,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,301879311,2490,1815,2.68889,268.889%
+2.,300132522,2527,1852,2.7437,274.37%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+pr124.tsp,2,300,59030,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,303378242,519757,460727,7.80496,780.496%
+2.,303151888,519319,460289,7.79754,779.754%

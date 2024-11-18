@@ -43,7 +43,7 @@
         }
 
         // Sprawdzamy czy przekroczyliśmy limit czasu
-        if (++iteration_count > 10000000) {
+        if (++iteration_count > 1000000) {
             iteration_count = 0;
             auto current_time = std::chrono::steady_clock::now();
             if (current_time - start_time >= time_limit) {
