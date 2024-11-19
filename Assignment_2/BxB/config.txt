@@ -1,12 +1,15 @@
-tsp_6_1.txt 10 bfs 132 0 1 2 3 4 5 0
-tsp_6_2.txt 10 bfs 80 0 5 1 2 3 4 0
-tsp_10.txt 10 bfs 212 0 3 4 2 8 7 6 9 1 5 0
-tsp_12.txt 2 bfs 264 0 1 8 4 6 2 11 9 7 5 3 10 0
-tsp_13.txt 1 bfs 269 0 10 3 5 7 9 11 2 6 4 8 1 12 0
-tsp_14.txt 1 bfs 282 0 10 3 5 7 9 13 11 2 6 4 8 1 12 0
-tsp15_random.txt 1 bfs -1
-tsp17_random.txt 1 bfs -1
-tsp19_random.txt 1 bfs -1
-tsp21_random.txt 1 bfs -1
-tsp23_random.txt 1 bfs -1
-Test_dfs.csv
+tsp7_random.txt 100 dfs -1 290
+tsp8_random.txt 100 dfs -1 331
+tsp9_random.txt 100 dfs -1 377
+tsp_10.txt 10 dfs 212 213 0 3 4 2 8 7 6 9 1 5 0
+tsp11_random.txt 100 dfs -1 371
+tsp_12.txt 100 dfs 264 264 0 1 8 4 6 2 11 9 7 5 3 10 0
+tsp_13.txt 100 dfs 269 269 0 10 3 5 7 9 11 2 6 4 8 1 12 0
+tsp_14.txt 100 dfs 282 282 0 10 3 5 7 9 13 11 2 6 4 8 1 12 0
+tsp15_random.txt 100 dfs -1 453
+tsp17_random.txt 10 dfs -1 754
+tsp19_random.txt 10 dfs -1 707
+tsp21_random.txt 2 dfs -1 807
+tsp23_random.txt 1 dfs -1 791
+tsp24_random.txt 1 dfs -1 1038
+Test_dfs_NN.csv

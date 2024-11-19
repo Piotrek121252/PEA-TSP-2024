@@ -39,9 +39,10 @@ std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string
         int repetitions;
         std::string method;
         int optimal_cost;
+        int initial_upperbound;
         std::vector<int> optimal_path;
 
-        iss >> graph_file >> repetitions >> method >> optimal_cost;
+        iss >> graph_file >> repetitions >> method >> optimal_cost >> initial_upperbound;
 
         // Czytamy optymalna ścieżke
         int node;
@@ -66,7 +67,7 @@ std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string
         }
         // Tworzymy instancję TSP do przebadania i dodajemy do listy instancji
         if (!graphModel.second.empty()) {
-            TSPInstance tsp_instance(graphModel.first, graphModel.second, graph_file, repetitions, method, optimal_cost, optimal_path);
+            TSPInstance tsp_instance(graphModel.first, graphModel.second, graph_file, repetitions, method, optimal_cost, initial_upperbound, optimal_path);
             instances.push_back(tsp_instance);
         }
     }
@@ -108,11 +109,11 @@ int main() {
             auto start_time = std::chrono::high_resolution_clock::now();
 
             if (instance.getMethod() == "dfs") {
-                result = TSP_BxB_new::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+                result = TSP_BxB_new::new_TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
             } else if (instance.getMethod() == "bfs") {
-                result = TSP_BxB_new::TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix());
+                result = TSP_BxB_new::new_TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
             } else if (instance.getMethod() == "best-first") {
-                result = TSP_BxB_new::TSP_BESTFIRST_start(instance.getVertices(), instance.getAdjacencyMatrix());
+                result = TSP_BxB_new::new_TSP_BESTFIRST_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
             } else {
                 continue;
             }

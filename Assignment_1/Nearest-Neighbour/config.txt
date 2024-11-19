@@ -1,13 +1,15 @@
-gr17.tsp 5 2085
-bays29.tsp 5 2020
-swiss42.tsp 5 1273
-berlin52.tsp 2 7542
-st70.tsp 2 675
-pr124.tsp 2 59030
-br17.atsp 5 39
-ftv35.atsp 5 1473
-ry48p.atsp 5 14422
-ftv55.atsp 2 1608
-ft70.atsp 2 38673
-kro124.atsp 2 36230
-sprawozdanie_NN_zero.csv
+tsp7_random.txt 2 -1
+tsp8_random.txt 2 -1
+tsp9_random.txt 2 -1
+tsp_10.txt 2 212 0 3 4 2 8 7 6 9 1 5 0
+tsp11_random.txt 2 -1
+tsp_12.txt 2 264 0 1 8 4 6 2 11 9 7 5 3 10 0
+tsp_13.txt 2 269 0 10 3 5 7 9 11 2 6 4 8 1 12 0
+tsp_14.txt 2 282 0 10 3 5 7 9 13 11 2 6 4 8 1 12 0
+tsp15_random.txt 2 -1
+tsp17_random.txt 2 -1
+tsp19_random.txt 2 -1
+tsp21_random.txt 2 -1
+tsp23_random.txt 2 -1
+tsp24_random.txt 2 -1
+Values_for_BxB.csv
