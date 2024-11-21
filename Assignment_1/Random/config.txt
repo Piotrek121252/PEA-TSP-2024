@@ -1,7 +1,7 @@
-br17.atsp 4 300 39
-ftv35.atsp 4 300 1473
-ry48p.atsp 4 300 14422
-ftv55.atsp 4 300 1608
-ft70.atsp 4 300 38673
-kro124.atsp 4 300 36230
+br17.atsp 4 360 39
+ftv35.atsp 4 360 1473
+ry48p.atsp 4 360 14422
+ftv55.atsp 4 360 1608
+ft70.atsp 4 360 38673
+kro124.atsp 4 360 36230
 sprawozdanie_random_atsp.csv

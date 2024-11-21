@@ -1,189 +1,265 @@
-#include <stack>
-#include <queue>
+#include <unordered_set>
+#include <utility>
 #include "TSP_BxB.h"
 
-const int INF = std::numeric_limits<int>::max();
+Node::Node(int vertex, int lowerBound) {
+    this->vertex = vertex;
+    this->lowerBound = lowerBound;
+}
 
-struct NodeState {
-    int node;
-    std::vector<int> path;
-    int pathCost;
-    int lower_bound;
-    std::vector<bool> visited;
-};
+int *TSP_BxB::minWeights;
+int TSP_BxB::startingVertex;
+int TSP_BxB::graphSize;
 
-struct CompareNodeState {
-    bool operator()(const NodeState& a, const NodeState& b) {
-        return a.pathCost > b.pathCost;
+std::pair<int, std::vector<int>>
+TSP_BxB::new_TSP_BFS_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix, int initialUpperbound) {
+
+    startingVertex = 0;
+    std::queue<Node *> queue;
+    std::vector<short> bestPath = {0};
+
+    int upperBound;
+
+    if (initialUpperbound > 0) {
+        upperBound = initialUpperbound;
+    } else {
+        upperBound = std::numeric_limits<int>::max();
     }
-};
 
-std::pair<int, std::vector<int>> TSP_BxB::TSP_DFS_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix) {
-    // Tworzymy zmienne przechowujące obecnie najlepsze rozwiązanie
-    int optimalCost = INF;
-    std::vector<int> optimalPath;
+    graphSize = num_of_vertices;
+    minWeights = new int[num_of_vertices];
 
-    // Stos do przechowywania częściowych rozwiązań
-    std::stack<NodeState> stack;
-
-    // Inicjalizujemy początkowy stan dla wierzchołka startowego 0
-    NodeState initialState = {0, {0}, 0, computeInitLB(num_of_vertices, matrix), std::vector<bool>(num_of_vertices, false)};
-    initialState.visited[0] = true;
-    stack.push(initialState);
-
-    while (!stack.empty()) {
-        NodeState current = stack.top();
-        stack.pop();
-
-        // Warunek końcowy jak ścieżka zawiera wszystkie wierzchołki, sprawdzamy cykl hamiltona
-        if (current.path.size() == num_of_vertices) {
-            // Powrót do startu
-            int finalCost = current.pathCost + matrix[current.node][0];
-            if (finalCost < optimalCost) {
-                optimalCost = finalCost;
-                // Ustawiamy optymalną ścieżkę na nową znalezioną i dodajemy powrót do wierzchołka startowego
-                optimalPath = current.path;
-                optimalPath.push_back(0);
-            }
-            continue;
-        }
-        // Sprawdzamy sąsiadujące wierzchołki
-        for (int i = num_of_vertices - 1; i >= 0; i--) {
-            // Sprawdzamy czy wierzchołek nie był jeszcze odwiedzony i czy istnieje krawędź
-            if (!current.visited[i] && matrix[current.node][i] != 0) {
-                // Aktualizujemy wartości ścieżki oraz lower bound
-                int newPathCost = current.pathCost  + matrix[current.node][i];
-                int newLB = current.lower_bound - getSmallestEdge(num_of_vertices, current.node, matrix);
-
-                // Dodajemy potomka tylko wtedy gdy jest obiecujący (inaczej odcinamy)
-                if (newLB + newPathCost < optimalCost) {
-                    NodeState newState = {i, current.path, newPathCost, newLB, current.visited};
-                    newState.path.push_back(i);
-                    newState.visited[i] = true;
-                    stack.push(newState);
+    int lowerBound = 0;
+    for (int i = 0; i < num_of_vertices; i++) {
+        int minWeight = std::numeric_limits<int>::max();
+        for (int j = 0; j < num_of_vertices; j++) {
+            if (i != j) {
+                int weight = matrix[i][j];
+                if (weight < minWeight) {
+                    minWeight = weight;
                 }
             }
         }
+        minWeights[i] = minWeight;
+        lowerBound += minWeight;
     }
+    short rootVertex = startingVertex;
 
-    return {optimalCost, optimalPath};
-}
-
-std::pair<int, std::vector<int>> TSP_BxB::TSP_BFS_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix) {
-    // Tworzymy zmienne przechowujące obecnie najlepsze rozwiązanie
-    int optimalCost = INF;
-    std::vector<int> optimalPath;
-
-    // Kolejka do przechowywania częściowych rozwiązań
-    std::queue<NodeState> queue;
-
-    // Inicjalizujemy początkowy stan dla wierzchołka startowego 0
-    NodeState initialState = {0, {0}, 0, computeInitLB(num_of_vertices, matrix), std::vector<bool>(num_of_vertices, false)};
-    initialState.visited[0] = true;
-    queue.push(initialState);
+    Node *root = new Node(startingVertex, lowerBound);
+    root->current_path = {rootVertex};
+    queue.push(root);
 
     while (!queue.empty()) {
-        NodeState current = queue.front();
+        Node *node = queue.front();
         queue.pop();
 
-        // Warunek końcowy jak ścieżka zawiera wszystkie wierzchołki, sprawdzamy cykl hamiltona
-        if (current.path.size() == num_of_vertices) {
-            // Powrót do startu
-            int finalCost = current.pathCost + matrix[current.node][0];
-            if (finalCost < optimalCost) {
-                optimalCost = finalCost;
-                // Ustawiamy optymalną ścieżkę na nową znalezioną i dodajemy powrót do wierzchołka startowego
-                optimalPath = current.path;
-                optimalPath.push_back(0);
-            }
-            continue;
-        }
-        // Sprawdzamy sąsiadujące wierzchołki
-        for (int i = 0; i < num_of_vertices; i++) {
-            // Sprawdzamy czy wierzchołek nie był jeszcze odwiedzony i czy istnieje krawędź
-            if (!current.visited[i] && matrix[current.node][i] != 0) {
-                // Aktualizujemy wartości ścieżki oraz lower bound
-                int newPathCost = current.pathCost  + matrix[current.node][i];
-                int newLB = current.lower_bound - getSmallestEdge(num_of_vertices, current.node, matrix);
+        std::vector<short> verticesToVisit = getVerticesToVisit(node);
+        if (verticesToVisit.empty()) {
 
-                // Dodajemy potomka tylko wtedy gdy jest obiecujący (inaczej odcinamy)
-                if (newLB + newPathCost < optimalCost) {
-                    NodeState newState = {i, current.path, newPathCost, newLB, current.visited};
-                    newState.path.push_back(i);
-                    newState.visited[i] = true;
-                    queue.push(newState);
-                }
+            node->lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][startingVertex];
+            if (node->lowerBound < upperBound) {
+                upperBound = node->lowerBound;
+                bestPath = node->current_path;
+                bestPath.push_back(startingVertex);
             }
         }
+
+        for (short childVertex : verticesToVisit) {
+            lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][childVertex];
+
+            if (lowerBound < upperBound) {
+                Node *child = new Node(childVertex, lowerBound);
+                child->current_path = std::vector<short>(node->current_path);
+                child->current_path.push_back(childVertex);
+                queue.push(child);
+            }
+        }
+        delete node;
     }
 
-    return {optimalCost, optimalPath};
-}
+    delete[] minWeights;
 
-std::pair<int, std::vector<int>> TSP_BxB::TSP_LOWCOST_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix) {
-    // Tworzymy zmienne przechowujące obecnie najlepsze rozwiązanie
-    int optimalCost = INF;
+
     std::vector<int> optimalPath;
 
-    // Stos do przechowywania częściowych rozwiązań
-    std::priority_queue<NodeState, std::vector<NodeState>, CompareNodeState> pq;
+    optimalPath.reserve(bestPath.size());
+    optimalPath.insert(optimalPath.end(), bestPath.begin(), bestPath.end());
 
-    // Inicjalizujemy początkowy stan dla wierzchołka startowego 0
-    NodeState initialState = {0, {0}, 0, computeInitLB(num_of_vertices, matrix), std::vector<bool>(num_of_vertices, false)};
-    initialState.visited[0] = true;
-    pq.push(initialState);
+    return {upperBound, optimalPath};
+}
 
-    while (!pq.empty()) {
-        NodeState current = pq.top();
-        pq.pop();
+std::vector<short> TSP_BxB::getVerticesToVisit(Node *node) {
+    std::unordered_set<int> verticesToVisit;
+    for (int i = 0; i < graphSize; i++) {
+        verticesToVisit.insert(i);
+    }
 
-        // Warunek końcowy jak ścieżka zawiera wszystkie wierzchołki, sprawdzamy cykl hamiltona
-        if (current.path.size() == num_of_vertices) {
-            // Powrót do startu
-            int finalCost = current.pathCost + matrix[current.node][0];
-            if (finalCost < optimalCost) {
-                optimalCost = finalCost;
-                // Ustawiamy optymalną ścieżkę na nową znalezioną i dodajemy powrót do wierzchołka startowego
-                optimalPath = current.path;
-                optimalPath.push_back(0);
-            }
-            continue;
-        }
-        // Sprawdzamy sąsiadujące wierzchołki
-        for (int i = num_of_vertices - 1; i >= 0; i--) {
-            // Sprawdzamy czy wierzchołek nie był jeszcze odwiedzony i czy istnieje krawędź
-            if (!current.visited[i] && matrix[current.node][i] != 0) {
-                // Aktualizujemy wartości ścieżki oraz lower bound
-                int newPathCost = current.pathCost  + matrix[current.node][i];
-                int newLB = current.lower_bound - getSmallestEdge(num_of_vertices, current.node, matrix);
+    for (int vertex : node->current_path) {
+        verticesToVisit.erase(vertex);
+    }
 
-                // Dodajemy potomka tylko wtedy gdy jest obiecujący (inaczej odcinamy)
-                if (newLB + newPathCost < optimalCost) {
-                    NodeState newState = {i, current.path, newPathCost, newLB, current.visited};
-                    newState.path.push_back(i);
-                    newState.visited[i] = true;
-                    pq.push(newState);
+    std::vector<short> orderedVertices(verticesToVisit.begin(), verticesToVisit.end());
+    std::sort(orderedVertices.begin(), orderedVertices.end());
+
+    return orderedVertices;
+}
+
+std::pair<int, std::vector<int>>
+TSP_BxB::new_TSP_DFS_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix, int initialUpperbound) {
+
+    startingVertex = 0;
+    std::stack<Node *> stack;
+    std::vector<short> bestPath = {0};
+
+
+    int upperBound;
+    if (initialUpperbound > 0) {
+        upperBound = initialUpperbound;
+    } else {
+        upperBound = std::numeric_limits<int>::max();
+    }
+
+    graphSize = num_of_vertices;
+    minWeights = new int[num_of_vertices];
+
+    int lowerBound = 0;
+    for (int i = 0; i < num_of_vertices; i++) {
+        int minWeight = std::numeric_limits<int>::max();
+        for (int j = 0; j < num_of_vertices; j++) {
+            if (i != j) {
+                int weight = matrix[i][j];
+                if (weight < minWeight) {
+                    minWeight = weight;
                 }
             }
         }
+        minWeights[i] = minWeight;
+        lowerBound += minWeight;
     }
-    return {optimalCost, optimalPath};
-}
+    short rootVertex = startingVertex;
 
-int TSP_BxB::computeInitLB(int n, const std::vector<std::vector<int>> &matrix) {
-    int lb = 0;
-    for (int i = 0; i < n; i++){
-        lb += getSmallestEdge(n, i, matrix);
-    }
-    return lb;
-}
+    Node *root = new Node(startingVertex, lowerBound);
+    root->current_path = {rootVertex};
+    stack.push(root);
 
-int TSP_BxB::getSmallestEdge(int n, int node, const std::vector<std::vector<int>> &matrix) {
-    int minEdge = INF;
-    for (int j = 0; j < n; j++) {
-        if (node != j && matrix[node][j] < minEdge) {
-            minEdge = matrix[node][j];
+    while (!stack.empty()) {
+        Node *node = stack.top();
+        stack.pop();
+
+        std::vector<short> verticesToVisit = getVerticesToVisit(node);
+        if (verticesToVisit.empty()) {
+
+            node->lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][startingVertex];
+            if (node->lowerBound < upperBound) {
+                upperBound = node->lowerBound;
+                bestPath = node->current_path;
+                bestPath.push_back(startingVertex);
+            }
         }
+
+        for (int i = verticesToVisit.size() - 1; i >= 0; i--) {
+            short childVertex = verticesToVisit[i];
+            lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][childVertex];
+
+            if (lowerBound < upperBound) {
+                Node *child = new Node(childVertex, lowerBound);
+                child->current_path = std::vector<short>(node->current_path);
+                child->current_path.push_back(childVertex);
+                stack.push(child);
+            }
+        }
+        delete node;
     }
-    return minEdge;
+
+    delete[] minWeights;
+
+    std::vector<int> optimalPath;
+
+    optimalPath.reserve(bestPath.size());
+    optimalPath.insert(optimalPath.end(), bestPath.begin(), bestPath.end());
+
+    return {upperBound, optimalPath};
 }
+
+struct compareNodes2 {
+    bool operator()(const Node *a, const Node *b) const {
+        return a->lowerBound > b->lowerBound;
+    }
+};
+
+std::pair<int, std::vector<int>>
+TSP_BxB::new_TSP_BESTFIRST_start(int num_of_vertices, const std::vector<std::vector<int>> &matrix, int initialUpperbound) {
+
+    startingVertex = 0;
+    std::priority_queue<Node *, std::vector<Node *>, compareNodes2> pq;
+    std::vector<short> bestPath = {0};
+
+    int upperBound;
+    if (initialUpperbound > 0) {
+        upperBound = initialUpperbound;
+    } else {
+        upperBound = std::numeric_limits<int>::max();
+    }
+
+    graphSize = num_of_vertices;
+    minWeights = new int[num_of_vertices];
+
+    int lowerBound = 0;
+    for (int i = 0; i < num_of_vertices; i++) {
+        int minWeight = std::numeric_limits<int>::max();
+        for (int j = 0; j < num_of_vertices; j++) {
+            if (i != j) {
+                int weight = matrix[i][j];
+                if (weight < minWeight) {
+                    minWeight = weight;
+                }
+            }
+        }
+        minWeights[i] = minWeight;
+        lowerBound += minWeight;
+    }
+    short rootVertex = startingVertex;
+
+    Node *root = new Node(startingVertex, lowerBound);
+    root->current_path = {rootVertex};
+    pq.push(root);
+
+    while (!pq.empty()) {
+        Node *node = pq.top();
+        pq.pop();
+
+        std::vector<short> verticesToVisit = getVerticesToVisit(node);
+        if (verticesToVisit.empty()) {
+
+            node->lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][startingVertex];
+            if (node->lowerBound < upperBound) {
+                upperBound = node->lowerBound;
+                bestPath = node->current_path;
+                bestPath.push_back(startingVertex);
+            }
+        }
+
+        for (short childVertex : verticesToVisit) {
+            lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][childVertex];
+
+            if (lowerBound < upperBound) {
+                Node *child = new Node(childVertex, lowerBound);
+                child->current_path = std::vector<short>(node->current_path);
+                child->current_path.push_back(childVertex);
+                pq.push(child);
+            }
+        }
+        delete node;
+    }
+
+    delete[] minWeights;
+
+    std::vector<int> optimalPath;
+
+    optimalPath.reserve(bestPath.size());
+    optimalPath.insert(optimalPath.end(), bestPath.begin(), bestPath.end());
+
+    return {upperBound, optimalPath};
+}
+
+

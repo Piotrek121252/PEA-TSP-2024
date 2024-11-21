@@ -1,15 +1,7 @@
-tsp7_random.txt 2 -1
-tsp8_random.txt 2 -1
-tsp9_random.txt 2 -1
-tsp_10.txt 2 212 0 3 4 2 8 7 6 9 1 5 0
-tsp11_random.txt 2 -1
-tsp_12.txt 2 264 0 1 8 4 6 2 11 9 7 5 3 10 0
-tsp_13.txt 2 269 0 10 3 5 7 9 11 2 6 4 8 1 12 0
-tsp_14.txt 2 282 0 10 3 5 7 9 13 11 2 6 4 8 1 12 0
-tsp15_random.txt 2 -1
-tsp17_random.txt 2 -1
-tsp19_random.txt 2 -1
-tsp21_random.txt 2 -1
-tsp23_random.txt 2 -1
-tsp24_random.txt 2 -1
-Values_for_BxB.csv
+br17.atsp 4 39
+ftv35.atsp 4 1473
+ry48p.atsp 4 14422
+ftv55.atsp 4 1608
+ft70.atsp 4 38673
+kro124.atsp 4 36230
+sprawozdanie_NN_atsp.csv

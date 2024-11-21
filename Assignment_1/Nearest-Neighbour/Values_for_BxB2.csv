@@ -1,0 +1,20 @@
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp16_random.txt,2,-1,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,43900,670,671,671,67100%
+2.,37200,670,671,671,67100%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp18_random.txt,2,-1,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,103500,562,563,563,56300%
+2.,55200,562,563,563,56300%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp20_random.txt,2,-1,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,77700,707,708,708,70800%
+2.,121200,707,708,708,70800%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+tsp22_random.txt,2,-1,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,80600,886,887,887,88700%
+2.,124900,886,887,887,88700%

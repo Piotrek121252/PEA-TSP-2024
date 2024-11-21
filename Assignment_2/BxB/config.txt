@@ -7,9 +7,13 @@ tsp_12.txt 100 dfs 264 264 0 1 8 4 6 2 11 9 7 5 3 10 0
 tsp_13.txt 100 dfs 269 269 0 10 3 5 7 9 11 2 6 4 8 1 12 0
 tsp_14.txt 100 dfs 282 282 0 10 3 5 7 9 13 11 2 6 4 8 1 12 0
 tsp15_random.txt 100 dfs -1 453
+tsp16_random.txt 100 dfs -1 670
 tsp17_random.txt 10 dfs -1 754
+tsp18_random.txt 20 dfs -1 562
 tsp19_random.txt 10 dfs -1 707
+tsp20_random.txt 5 dfs -1 707
 tsp21_random.txt 2 dfs -1 807
+tsp22_random.txt 5 dfs -1 886
 tsp23_random.txt 1 dfs -1 791
 tsp24_random.txt 1 dfs -1 1038
 Test_dfs_NN.csv

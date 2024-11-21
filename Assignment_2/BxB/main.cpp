@@ -6,7 +6,6 @@
 #include "TSPInstance.h"
 #include "GraphReader.h"
 #include "TSP_BxB.h"
-#include "TSP_BxB_new.h"
 
 
 std::pair<std::vector<TSPInstance>, std::string> loadInstances(const std::string& filename) {
@@ -109,11 +108,11 @@ int main() {
             auto start_time = std::chrono::high_resolution_clock::now();
 
             if (instance.getMethod() == "dfs") {
-                result = TSP_BxB_new::new_TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
+                result = TSP_BxB::new_TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
             } else if (instance.getMethod() == "bfs") {
-                result = TSP_BxB_new::new_TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
+                result = TSP_BxB::new_TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
             } else if (instance.getMethod() == "best-first") {
-                result = TSP_BxB_new::new_TSP_BESTFIRST_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
+                result = TSP_BxB::new_TSP_BESTFIRST_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
             } else {
                 continue;
             }
