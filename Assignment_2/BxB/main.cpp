@@ -98,7 +98,7 @@ int main() {
         } else
             results_file << "None" << std::endl;
 
-        results_file << "No.,Result,Execution Times [ms],\n";
+        results_file << "No.,Result,Execution Times [us],\n";
 
         std::cout << "Filename: " << instance.getFilename() << " Method: " << instance.getMethod() << std::endl;
 
@@ -108,11 +108,14 @@ int main() {
             auto start_time = std::chrono::high_resolution_clock::now();
 
             if (instance.getMethod() == "dfs") {
-                result = TSP_BxB::new_TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
+                result = TSP_BxB::TSP_DFS_start(instance.getVertices(), instance.getAdjacencyMatrix(),
+                                                instance.getInitialUpperBound());
             } else if (instance.getMethod() == "bfs") {
-                result = TSP_BxB::new_TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
+                result = TSP_BxB::TSP_BFS_start(instance.getVertices(), instance.getAdjacencyMatrix(),
+                                                instance.getInitialUpperBound());
             } else if (instance.getMethod() == "best-first") {
-                result = TSP_BxB::new_TSP_BESTFIRST_start(instance.getVertices(), instance.getAdjacencyMatrix(), instance.getInitialUpperBound());
+                result = TSP_BxB::TSP_BESTFIRST_start(instance.getVertices(), instance.getAdjacencyMatrix(),
+                                                      instance.getInitialUpperBound());
             } else {
                 continue;
             }
@@ -121,11 +124,11 @@ int main() {
 
             long long measured_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
 
-            results_file << rep + 1 << ".," << result.first << "," << measured_time / 1000.0 << "\n";
+            results_file << rep + 1 << ".," << result.first << "," << measured_time << "\n";
 
             std::cout << "Repetition " << rep + 1 << " - Result: " << result.first << " - Execution Time: " << measured_time / 1000.0 << " [ms]\n";
 
-            if (result.second.size() < 16) {
+            if (result.second.size() <= 17) {
                 for (size_t j = 0; j < result.second.size() - 1; j++) {
                     std::cout << result.second[j] << "->";
                 }

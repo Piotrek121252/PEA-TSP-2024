@@ -11,7 +11,5 @@ add_executable(PEA-Nearest-Neighbour main.cpp
         TSPInstance.h
         GraphReader.cpp
         GraphReader.h
-        TSP_NN.cpp
-        TSP_NN.h
         TSP_NN_Recursion.cpp
         TSP_NN_Recursion.h)

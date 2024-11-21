@@ -1,11 +1,11 @@
 #include "TSP_NN_Recursion.h"
 
-void TSP_NN_Recursion::explore_paths(int current_city, const std::vector<std::vector<int>>& matrix, std::vector<bool>& visited, std::vector<int>& current_path,
-                   int current_cost, int& best_cost, std::vector<int>& best_path, int num_of_vertices) {
+void TSP_NN_Recursion::nearest_neighbor_search(int current_city, const std::vector<std::vector<int>>& matrix, std::vector<bool>& visited, std::vector<int>& current_path,
+                                               int current_cost, int& best_cost, std::vector<int>& best_path, int num_of_vertices) {
     // Jeśli udało nam się odwiedzić wszystkie miasta to sprawdzamy czy ścieżka jest najlepsza do tej pory
     if (current_path.size() == num_of_vertices) {
         // Dodajemy koszt powrotu do startowego miasta
-        current_cost += matrix[current_city][current_path[0]];  // Return to start
+        current_cost += matrix[current_city][current_path[0]];
         if (current_cost < best_cost) {
             best_cost = current_cost;
             best_path = current_path;
@@ -36,8 +36,8 @@ void TSP_NN_Recursion::explore_paths(int current_city, const std::vector<std::ve
         current_cost += nearest_distance; // Dodajemy koszt do obecnego kosztu
 
         // Eksplorujemy kolejne wierzchołki
-        explore_paths(city, matrix, visited, current_path, current_cost,
-                      best_cost, best_path, num_of_vertices);
+        nearest_neighbor_search(city, matrix, visited, current_path, current_cost,
+                                best_cost, best_path, num_of_vertices);
 
         // Cofamy się w danym kroku aby móc przejrzeć kolejne miasto
         visited[city] = false;
@@ -60,8 +60,8 @@ std::pair<int, std::vector<int>> TSP_NN_Recursion::TSP_NN_start(int num_of_verti
         int current_cost = 0;
 
         // Wywołujemy metodę, która wykorzystuje rekurencję aby zachłannie stworzyć ścieżke
-        explore_paths(starting_city, matrix, visited, current_path, current_cost,
-                      best_cost, best_path, num_of_vertices);
+        nearest_neighbor_search(starting_city, matrix, visited, current_path, current_cost,
+                                best_cost, best_path, num_of_vertices);
 
     }
 

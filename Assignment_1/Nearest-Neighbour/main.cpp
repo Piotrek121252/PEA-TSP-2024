@@ -5,7 +5,6 @@
 #include <chrono>
 #include "TSPInstance.h"
 #include "GraphReader.h"
-#include "TSP_NN.h"
 #include "TSP_NN_Recursion.h"
 
 
