@@ -27,6 +27,6 @@ private:
     static int graphSize;
     static int startingVertex;
 
-    static std::vector<short> getVerticesToVisit(Node *node);
+    static std::vector<short> getVerticesToVisit(Node *node, const std::vector<std::vector<int>> &matrix);
 };
 

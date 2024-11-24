@@ -1,7 +1,7 @@
-br17.atsp 4 39
-ftv35.atsp 4 1473
-ry48p.atsp 4 14422
-ftv55.atsp 4 1608
-ft70.atsp 4 38673
-kro124.atsp 4 36230
+br17.atsp 2 39
+ftv35.atsp 2 1473
+ry48p.atsp 2 14422
+ftv55.atsp 2 1608
+ft70.atsp 2 38673
+kro124.atsp 2 36230
 sprawozdanie_NN_atsp.csv

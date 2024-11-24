@@ -1,0 +1,9 @@
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+tsp_10.txt,4,360,212,0-3-4-2-8-7-6-9-1-5-0
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,4548,212,0,0,0%
+2.,7261,212,0,0,0%
+3.,6850,212,0,0,0%
+4.,3803,212,0,0,0%
+Instance Name,Repetitions,Execution_time_limit [s],Optimal Cost,Optimal Path
+br17.atsp,4,360,39,None

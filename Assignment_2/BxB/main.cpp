@@ -128,7 +128,7 @@ int main() {
 
             std::cout << "Repetition " << rep + 1 << " - Result: " << result.first << " - Execution Time: " << measured_time / 1000.0 << " [ms]\n";
 
-            if (result.second.size() <= 17) {
+            if (result.second.size() <= 16) {
                 for (size_t j = 0; j < result.second.size() - 1; j++) {
                     std::cout << result.second[j] << "->";
                 }

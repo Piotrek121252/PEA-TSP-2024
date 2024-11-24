@@ -1,0 +1,144 @@
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+br17.atsp,4,39,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,159091400,39,0,0,0%
+2.,130396200,39,0,0,0%
+3.,170399800,39,0,0,0%
+4.,136630600,39,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv35.atsp,4,1473,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,324200,1667,194,0.131704,13.1704%
+2.,426300,1667,194,0.131704,13.1704%
+3.,324800,1667,194,0.131704,13.1704%
+4.,334200,1667,194,0.131704,13.1704%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ry48p.atsp,4,14422,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,642500,15575,1153,0.0799473,7.99473%
+2.,818900,15575,1153,0.0799473,7.99473%
+3.,3649500,15575,1153,0.0799473,7.99473%
+4.,576000,15575,1153,0.0799473,7.99473%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv55.atsp,4,1608,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,1999700,1948,340,0.211443,21.1443%
+2.,1220200,1948,340,0.211443,21.1443%
+3.,1986200,1948,340,0.211443,21.1443%
+4.,9252800,1948,340,0.211443,21.1443%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ft70.atsp,4,38673,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,2464000,41815,3142,0.0812453,8.12453%
+2.,2338200,41815,3142,0.0812453,8.12453%
+3.,1636300,41815,3142,0.0812453,8.12453%
+4.,1454900,41815,3142,0.0812453,8.12453%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+kro124.atsp,4,36230,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,3989600,43316,7086,0.195584,19.5584%
+2.,3899600,43316,7086,0.195584,19.5584%
+3.,13451100,43316,7086,0.195584,19.5584%
+4.,5349300,43316,7086,0.195584,19.5584%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+br17.atsp,4,39,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,184134500,39,0,0,0%
+2.,122273100,39,0,0,0%
+3.,257408300,39,0,0,0%
+4.,183878100,39,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv35.atsp,4,1473,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,508700,1667,194,0.131704,13.1704%
+2.,448300,1667,194,0.131704,13.1704%
+3.,442800,1667,194,0.131704,13.1704%
+4.,459400,1667,194,0.131704,13.1704%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ry48p.atsp,4,14422,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,914600,15575,1153,0.0799473,7.99473%
+2.,621600,15575,1153,0.0799473,7.99473%
+3.,617600,15575,1153,0.0799473,7.99473%
+4.,593000,15575,1153,0.0799473,7.99473%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv55.atsp,4,1608,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,1222400,1948,340,0.211443,21.1443%
+2.,1212900,1948,340,0.211443,21.1443%
+3.,1471900,1948,340,0.211443,21.1443%
+4.,1302900,1948,340,0.211443,21.1443%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ft70.atsp,4,38673,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,1488800,41815,3142,0.0812453,8.12453%
+2.,1685400,41815,3142,0.0812453,8.12453%
+3.,1517100,41815,3142,0.0812453,8.12453%
+4.,1719000,41815,3142,0.0812453,8.12453%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+kro124.atsp,4,36230,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,3922300,43316,7086,0.195584,19.5584%
+2.,6135800,43316,7086,0.195584,19.5584%
+3.,4335100,43316,7086,0.195584,19.5584%
+4.,4189900,43316,7086,0.195584,19.5584%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+br17.atsp,2,39,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,86167800,39,0,0,0%
+2.,84621800,39,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv35.atsp,2,1473,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,243200,1667,194,0.131704,13.1704%
+2.,253900,1667,194,0.131704,13.1704%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ry48p.atsp,2,14422,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,436000,15575,1153,0.0799473,7.99473%
+2.,444000,15575,1153,0.0799473,7.99473%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv55.atsp,2,1608,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,900500,1948,340,0.211443,21.1443%
+2.,825100,1948,340,0.211443,21.1443%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ft70.atsp,2,38673,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,1087300,41815,3142,0.0812453,8.12453%
+2.,990300,41815,3142,0.0812453,8.12453%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+kro124.atsp,2,36230,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,2683300,43316,7086,0.195584,19.5584%
+2.,2801600,43316,7086,0.195584,19.5584%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+br17.atsp,2,39,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,91093200,39,0,0,0%
+2.,87675500,39,0,0,0%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv35.atsp,2,1473,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,223300,1667,194,0.131704,13.1704%
+2.,376900,1667,194,0.131704,13.1704%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ry48p.atsp,2,14422,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,431100,15575,1153,0.0799473,7.99473%
+2.,403900,15575,1153,0.0799473,7.99473%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ftv55.atsp,2,1608,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,831500,1948,340,0.211443,21.1443%
+2.,877900,1948,340,0.211443,21.1443%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+ft70.atsp,2,38673,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,1044700,41815,3142,0.0812453,8.12453%
+2.,1324400,41815,3142,0.0812453,8.12453%
+Instance Name,Repetitions,Optimal Cost,Optimal Path
+kro124.atsp,2,36230,None
+No.,Execution Time (us),Result,Absolute error,Relative error,Relative error %
+1.,3202500,43316,7086,0.195584,19.5584%
+2.,2924000,43316,7086,0.195584,19.5584%

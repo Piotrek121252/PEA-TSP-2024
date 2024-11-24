@@ -98,7 +98,7 @@ int main() {
             results_file << "None" << std::endl;
 
 
-        results_file << "No.,Cost,Execution Times [ms]\n";
+        results_file << "No.,Cost,Execution Times [us]\n";
 
         std::cout << "Filename: " << instance.getFilename() << std::endl;
 
@@ -118,7 +118,7 @@ int main() {
             double relative_error = (instance.getOptimalCost() != 0) ? absolute_error / std::abs(instance.getOptimalCost()) : 0.0;
             double relative_error_percentage = relative_error * 100;
 
-            results_file << rep + 1 << ".," << result.first << "," << measured_time / 1000.0 << "\n";
+            results_file << rep + 1 << ".," << result.first << "," << measured_time << "\n";
 
             std::cout << "Repetition " << rep + 1 << " - Result: " << result.first << " - Execution Time: " << measured_time / 1000.0 << " [ms]\n";
 

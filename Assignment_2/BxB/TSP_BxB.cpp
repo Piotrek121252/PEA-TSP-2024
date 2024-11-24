@@ -18,7 +18,7 @@ TSP_BxB::TSP_BFS_start(int num_of_vertices, const std::vector<std::vector<int>> 
     graphSize = num_of_vertices;
     // Tworzymy kolejkę do przechowywania aktywnych węzłów oraz zmienną przechowującą najlepsze znalezione rozwiązanie
     std::queue<Node *> queue;
-    std::vector<short> bestPath = {0};
+    std::vector<short> bestPath;
 
     // Ustawiamy początkowe górne ograniczenie na podstawie parametru initialUpperBound
     int upperBound;
@@ -57,18 +57,22 @@ TSP_BxB::TSP_BFS_start(int num_of_vertices, const std::vector<std::vector<int>> 
         Node *node = queue.front();
         queue.pop();
 
-        // Pobieramy listę wierzchołków, które można odwiedzić z danego wierzchołka
-        std::vector<short> verticesToVisit = getVerticesToVisit(node);
         // Jeśli mamy pełne rozwiązanie to dodajemy drogę powrotną i sprawdzamy
         // czy znalezione rozwiązanie jest lepsze od obecnie najlepszego
-        if (verticesToVisit.empty()) {
+        if (node->current_path.size() == num_of_vertices) {
             node->lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][startingVertex];
             if (node->lowerBound <= upperBound) {
                 upperBound = node->lowerBound;
                 bestPath = node->current_path;
                 bestPath.push_back(startingVertex);
             }
+            delete node;
+            continue;
         }
+
+        // Pobieramy listę wierzchołków, które można odwiedzić z danego wierzchołka
+        std::vector<short> verticesToVisit = getVerticesToVisit(node, matrix);
+
         // Dla każdego węzła, który można odwiedzić obliczamy
         // dolne ograniczenie i decydujemy czy dodać go do kolejki
         for (short childVertex : verticesToVisit) {
@@ -97,10 +101,12 @@ TSP_BxB::TSP_BFS_start(int num_of_vertices, const std::vector<std::vector<int>> 
     return {upperBound, optimalPath};
 }
 
-std::vector<short> TSP_BxB::getVerticesToVisit(Node *node) {
+std::vector<short> TSP_BxB::getVerticesToVisit(Node *node, const std::vector<std::vector<int>> &matrix) {
     std::unordered_set<int> verticesToVisit;
     for (int i = 0; i < graphSize; i++) {
-        verticesToVisit.insert(i);
+        if (matrix[node->vertex][i] > 0) {
+            verticesToVisit.insert(i);
+        }
     }
     // Usuwamy elementy z hash table bazując
     // na zawartości obecnej ścieżki
@@ -121,7 +127,7 @@ TSP_BxB::TSP_DFS_start(int num_of_vertices, const std::vector<std::vector<int>> 
     graphSize = num_of_vertices;
     // Tworzymy stos przechowujący węzły do przetworzenia
     std::stack<Node *> stack;
-    std::vector<short> bestPath = {0};
+    std::vector<short> bestPath;
 
     // Ustawiamy początkowe górne ograniczenie na podstawie parametru initialUpperBound
     int upperBound;
@@ -162,18 +168,20 @@ TSP_BxB::TSP_DFS_start(int num_of_vertices, const std::vector<std::vector<int>> 
         Node *node = stack.top();
         stack.pop();
 
-        // Pobieramy listę wierzchołków, które można odwiedzić z danego wierzchołka
-        std::vector<short> verticesToVisit = getVerticesToVisit(node);
         // Jeśli mamy pełne rozwiązanie to dodajemy drogę powrotną i sprawdzamy
         // czy znalezione rozwiązanie jest lepsze od obecnie najlepszego
-        if (verticesToVisit.empty()) {
+        if (node->current_path.size() == num_of_vertices) {
             node->lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][startingVertex];
             if (node->lowerBound <= upperBound) {
                 upperBound = node->lowerBound;
                 bestPath = node->current_path;
                 bestPath.push_back(startingVertex);
             }
+            delete node;
+            continue;
         }
+        // Pobieramy listę wierzchołków, które można odwiedzić z danego wierzchołka
+        std::vector<short> verticesToVisit = getVerticesToVisit(node, matrix);
         // Dla każdego węzła, który można odwiedzić obliczamy
         // dolne ograniczenie i decydujemy czy dodać go na stos
         // robimy to w odwrotnej kolejności aby na szczycie stostu był wierzchołek z najmniejszym indeksem
@@ -218,7 +226,7 @@ TSP_BxB::TSP_BESTFIRST_start(int num_of_vertices, const std::vector<std::vector<
     // Tworzymy kopiec minimalizacyjny, do którego przekazujemy komparator
     // porównujący węzły na podstawie wartości lowerBound
     std::priority_queue<Node *, std::vector<Node *>, compareNodes2> pq;
-    std::vector<short> bestPath = {0};
+    std::vector<short> bestPath;
 
     // Ustawiamy początkowe górne ograniczenie na podstawie parametru initialUpperBound
     int upperBound;
@@ -257,10 +265,7 @@ TSP_BxB::TSP_BESTFIRST_start(int num_of_vertices, const std::vector<std::vector<
         Node *node = pq.top();
         pq.pop();
 
-        // Pobieramy listę wierzchołków, które można odwiedzić z danego wierzchołka
-        std::vector<short> verticesToVisit = getVerticesToVisit(node);
-
-        if (verticesToVisit.empty()) {
+        if (node->current_path.size() == num_of_vertices) {
             // Jeśli mamy pełne rozwiązanie to dodajemy drogę powrotną i sprawdzamy
             // czy znalezione rozwiązanie jest lepsze od obecnie najlepszego
             node->lowerBound = node->lowerBound - minWeights[node->vertex] + matrix[node->vertex][startingVertex];
@@ -269,7 +274,13 @@ TSP_BxB::TSP_BESTFIRST_start(int num_of_vertices, const std::vector<std::vector<
                 bestPath = node->current_path;
                 bestPath.push_back(startingVertex);
             }
+            delete node;
+            continue;
         }
+
+        // Pobieramy listę wierzchołków, które można odwiedzić z danego wierzchołka
+        std::vector<short> verticesToVisit = getVerticesToVisit(node, matrix);
+
         // Dla każdego węzła, który można odwiedzić obliczamy
         // dolne ograniczenie i decydujemy czy dodać go do kopca
         for (short childVertex : verticesToVisit) {

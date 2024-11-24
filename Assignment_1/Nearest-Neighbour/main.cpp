@@ -121,10 +121,12 @@ int main() {
             std::cout << "Repetition " << rep + 1 << " - Result: " << result.first << " - Execution Time: " << measured_time / 1000.0 << " [us]"
                       << " - Absolute Error: " << absolute_error << " - Relative Error: " << relative_error << " - " << relative_error_percentage << "% \n";
 
-            for (size_t j = 0; j < result.second.size() - 1; j++) {
-                std::cout << result.second[j] << "->";
-            }
+            if (result.second.size() <= 16) {
+                for (size_t j = 0; j < result.second.size() - 1; j++) {
+                    std::cout << result.second[j] << "->";
+                }
                 std::cout << result.second.back() << std::endl;
+            }
 
             if (instance.getOptimalCost() != -1 && result.first != instance.getOptimalCost()) {
                 std::cout << "Different cost detected for " << instance.getFilename() << " - Repetition " << rep + 1
